@@ -26,4 +26,4 @@ func fire(ctx: Dictionary) -> void:
 		var outward := (world_spawn - boss.global_position).normalized()
 		var dir := outward.rotated(angle_offset + float(i) * 0.15)
 
-		p.activate(world_spawn, dir, lifetime, projectile_speed)
+		p.activate(world_spawn, dir, lifetime, projectile_speed, 4, 1)

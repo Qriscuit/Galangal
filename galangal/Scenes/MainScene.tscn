@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xq1gx5fvdx0k"]
+[gd_scene load_steps=15 format=3 uid="uid://xq1gx5fvdx0k"]
 
 [ext_resource type="PackedScene" uid="uid://br700ukkkymff" path="res://Scenes/Ginger.tscn" id="1_hpc76"]
 [ext_resource type="Script" uid="uid://d007gkqmm47y0" path="res://Scripts/ShootStyle.gd" id="2_4b75m"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcl2rkdlaglhe" path="res://Scenes/camera.tscn" id="5_qxria"]
 [ext_resource type="Texture2D" uid="uid://k8edgmxyqt0w" path="res://Sprites/NewSpaceBG.jpg" id="5_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://bnhoqgi6ksdj6" path="res://Scenes/ProjectilePool.tscn" id="6_y4jh7"]
+[ext_resource type="Script" uid="uid://bhfhclqt7qr8u" path="res://Scenes/HealthBar.gd" id="11_8ju71"]
 
 [sub_resource type="Resource" id="Resource_5qxwa"]
 script = ExtResource("3_8ju71")
@@ -28,9 +29,13 @@ metadata/_custom_type_script = "uid://bsnwxxv3nvr3d"
 [node name="Boss" parent="." instance=ExtResource("2_tr2i4")]
 position = Vector2(0, -1544)
 scale = Vector2(0.795, 0.795)
+max_health = null
 pool_path = NodePath("../ProjectilePool")
 target_path = NodePath("../Player")
 radius = 500.0
+point_count = null
+fire_interval = null
+style_switch_interval = null
 styles = Array[ExtResource("2_4b75m")]([SubResource("Resource_5qxwa"), SubResource("Resource_xc4hf"), SubResource("Resource_6rnll")])
 
 [node name="Player" parent="." instance=ExtResource("1_hpc76")]
@@ -63,3 +68,25 @@ texture = ExtResource("5_y4jh7")
 
 [node name="ProjectilePool" parent="." instance=ExtResource("6_y4jh7")]
 position = Vector2(-1071, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("11_8ju71")
+player_path = NodePath("../Player")
+health_bar_path = NodePath("PlayerHealth")
+Boss_path = NodePath("../Boss")
+Boss_health_bar_path = NodePath("BossHealth")
+
+[node name="PlayerHealth" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 178.0
+offset_top = 1186.0
+offset_right = 569.0
+offset_bottom = 1259.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BossHealth" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 152.0
+offset_top = 19.0
+offset_right = 543.0
+offset_bottom = 92.0
+value = 100.0

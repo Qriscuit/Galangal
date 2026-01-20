@@ -3,9 +3,10 @@ extends Node2D
 class_name Player
 
 signal hit(damage: int)
-signal healthChanged(current: int)
+signal healthChanged(current: int, Max: int)
 
-@export var Health : int = 100 
+@export var max_health: int = 100
+var current_health: int
 @export var move_speed: float = 650.0
 @export var min_x: float = -800.0
 @export var max_x: float = 800.0
@@ -29,6 +30,9 @@ var _muzzle: Node2D
 var _fire_timer: float = 0.0
 
 func _ready() -> void:
+	current_health = max_health
+	healthChanged.emit(current_health, max_health)
+	
 	_pool = get_node_or_null(projectile_pool_path) as Projectile_Pool
 	_muzzle = get_node_or_null(muzzle_path) as Node2D
 	if _muzzle == null:
@@ -64,11 +68,13 @@ func _handle_shooting() -> void:
 func _handle_shielding() -> void:
 	if Input.is_action_just_pressed("Shield"):
 		$Shield.visible = true
+		$Ginger/Area2D.monitoring = false
 		allowedToShoot = false
 		return
 		
 	if Input.is_action_just_released("Shield"):
 		$Shield.visible = false
+		$Ginger/Area2D.monitoring = true
 		allowedToShoot = true
 		return
 
@@ -89,7 +95,7 @@ func _spawn_player_shot() -> void:
 	var spawn_pos := _muzzle.global_position
 	var dir := Vector2.UP
 
-	p.activate(spawn_pos, dir, shot_lifetime, shot_speed)
+	p.activate(spawn_pos, dir, shot_lifetime, shot_speed, 3, 2)
 
 # --------------------------------------------------------------------
 # HIT REGISTRATION
@@ -108,4 +114,8 @@ func on_hurtbox_area_entered(area: Area2D) -> void:
 
 func _take_hit(damage: int) -> void:
 	hit.emit(damage)
+	
+	current_health = maxi(current_health - damage, 0)
+	healthChanged.emit(current_health, max_health)
+	
 	print("Player hit! Damage:", damage)

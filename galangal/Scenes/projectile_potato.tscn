@@ -8,8 +8,8 @@ radius = 90.0
 height = 374.0
 
 [node name="Area2D" type="Area2D"]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 4
+collision_mask = 2
 input_pickable = false
 script = ExtResource("2_oh07f")
 

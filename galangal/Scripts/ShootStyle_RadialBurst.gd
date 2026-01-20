@@ -18,4 +18,4 @@ func fire(ctx: Dictionary) -> void:
 		var world_spawn := boss.global_transform * (local_offset as Vector2)
 		var dir := (world_spawn - boss.global_position).normalized()  # outward
 
-		p.activate(world_spawn, dir, lifetime, projectile_speed)
+		p.activate(world_spawn, dir, lifetime, projectile_speed, 4, 1)

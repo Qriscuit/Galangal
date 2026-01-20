@@ -3,8 +3,8 @@ class_name ShootStyle_AimedVolley
 
 @export var lifetime: float = 2.0
 @export var projectile_speed: float = 1000.0
-@export var use_every_nth_point: int = 2   # 1 = all points, 2 = every other, etc.
-@export var spread_radians: float = 0.06   # small cone spread
+@export var use_every_nth_point: int = 2   
+@export var spread_radians: float = 0.06
 
 func fire(ctx: Dictionary) -> void:
 	var boss := ctx["boss"] as Node2D
@@ -28,4 +28,4 @@ func fire(ctx: Dictionary) -> void:
 		var s := spread_radians * (1.0 if (i % 2) == 0 else -1.0)
 		var dir := base_dir.rotated(s)
 
-		p.activate(world_spawn, dir, lifetime, projectile_speed)
+		p.activate(world_spawn, dir, lifetime, projectile_speed, 4, 1)

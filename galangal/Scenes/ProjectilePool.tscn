@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnhoqgi6ksdj6"]
+
+[ext_resource type="Script" uid="uid://mcj7ehp4ontr" path="res://Scripts/projectile_pool.gd" id="1_1451j"]
+[ext_resource type="PackedScene" uid="uid://dp7ri3j84yyfl" path="res://Scenes/projectile_potato.tscn" id="2_10whd"]
+
+[node name="ProjectilePool" type="Node2D"]
+script = ExtResource("1_1451j")
+projectile_scene = ExtResource("2_10whd")

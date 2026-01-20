@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6ra3hanqoqow"
+path="res://.godot/imported/Coin.wav-b0269cc90fa8d237abffbbc702ab7a63.sample"
+
+[deps]
+
+source_file="res://Sprites/Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/Coin.wav"
+dest_files=["res://.godot/imported/Coin.wav-b0269cc90fa8d237abffbbc702ab7a63.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

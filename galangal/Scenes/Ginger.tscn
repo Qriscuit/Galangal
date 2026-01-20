@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://br700ukkkymff"]
+
+[ext_resource type="Script" uid="uid://j2e48jwhfdv4" path="res://Scripts/Player.gd" id="1_ejdih"]
+[ext_resource type="Texture2D" uid="uid://d0l7xmgg7410e" path="res://Sprites/Ginger.png" id="1_k4ent"]
+[ext_resource type="Texture2D" uid="uid://dhkcmbucbtckn" path="res://Sprites/Shield.png" id="3_4b3of"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4ent"]
+radius = 181.44542
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ejdih")
+min_x = -600.0
+max_x = 600.0
+muzzle_path = NodePath("Muzzle")
+
+[node name="Ginger" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_k4ent")
+
+[node name="Area2D" type="Area2D" parent="Ginger"]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ginger/Area2D"]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_k4ent")
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(0, -181.35)
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10.000004)
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("3_4b3of")

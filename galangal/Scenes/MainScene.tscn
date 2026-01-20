@@ -1,0 +1,65 @@
+[gd_scene load_steps=14 format=3 uid="uid://xq1gx5fvdx0k"]
+
+[ext_resource type="PackedScene" uid="uid://br700ukkkymff" path="res://Scenes/Ginger.tscn" id="1_hpc76"]
+[ext_resource type="Script" uid="uid://d007gkqmm47y0" path="res://Scripts/ShootStyle.gd" id="2_4b75m"]
+[ext_resource type="PackedScene" uid="uid://xgtqr2xfo7fo" path="res://Scenes/Galangal.tscn" id="2_tr2i4"]
+[ext_resource type="Script" uid="uid://cj15bwmsmuwfo" path="res://Scripts/ShootStyle_AimedVolley.gd" id="3_8ju71"]
+[ext_resource type="PackedScene" uid="uid://dijik24aia35u" path="res://Scenes/Wall.tscn" id="3_nhkr4"]
+[ext_resource type="Script" uid="uid://c347byvwsomvl" path="res://Scripts/ShootStyle_RadialBurst.gd" id="4_xb4mg"]
+[ext_resource type="Script" uid="uid://bsnwxxv3nvr3d" path="res://Scripts/ShootStyle_Spiral.gd" id="5_6t1o7"]
+[ext_resource type="PackedScene" uid="uid://dcl2rkdlaglhe" path="res://Scenes/camera.tscn" id="5_qxria"]
+[ext_resource type="Texture2D" uid="uid://k8edgmxyqt0w" path="res://Sprites/NewSpaceBG.jpg" id="5_y4jh7"]
+[ext_resource type="PackedScene" uid="uid://bnhoqgi6ksdj6" path="res://Scenes/ProjectilePool.tscn" id="6_y4jh7"]
+
+[sub_resource type="Resource" id="Resource_5qxwa"]
+script = ExtResource("3_8ju71")
+metadata/_custom_type_script = "uid://cj15bwmsmuwfo"
+
+[sub_resource type="Resource" id="Resource_xc4hf"]
+script = ExtResource("4_xb4mg")
+metadata/_custom_type_script = "uid://c347byvwsomvl"
+
+[sub_resource type="Resource" id="Resource_6rnll"]
+script = ExtResource("5_6t1o7")
+metadata/_custom_type_script = "uid://bsnwxxv3nvr3d"
+
+[node name="Root" type="Node2D"]
+
+[node name="Boss" parent="." instance=ExtResource("2_tr2i4")]
+position = Vector2(0, -1544)
+scale = Vector2(0.795, 0.795)
+pool_path = NodePath("../ProjectilePool")
+target_path = NodePath("../Player")
+radius = 500.0
+styles = Array[ExtResource("2_4b75m")]([SubResource("Resource_5qxwa"), SubResource("Resource_xc4hf"), SubResource("Resource_6rnll")])
+
+[node name="Player" parent="." instance=ExtResource("1_hpc76")]
+position = Vector2(0, 163)
+projectile_pool_path = NodePath("../ProjectilePool")
+
+[node name="Wall" parent="." instance=ExtResource("3_nhkr4")]
+position = Vector2(0, 561.775)
+
+[node name="Wall2" parent="." instance=ExtResource("3_nhkr4")]
+position = Vector2(0, -2148)
+
+[node name="Wall3" parent="." instance=ExtResource("3_nhkr4")]
+position = Vector2(-830, -767)
+rotation = 1.5707964
+scale = Vector2(1.055, 1)
+
+[node name="Wall4" parent="." instance=ExtResource("3_nhkr4")]
+position = Vector2(813, -765)
+rotation = -1.5707963
+scale = Vector2(1.055, 1)
+
+[node name="Camera" parent="." instance=ExtResource("5_qxria")]
+position = Vector2(0, -810)
+
+[node name="NewSpaceBg" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-41, -738)
+texture = ExtResource("5_y4jh7")
+
+[node name="ProjectilePool" parent="." instance=ExtResource("6_y4jh7")]
+position = Vector2(-1071, 0)

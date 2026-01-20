@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dcl2rkdlaglhe"]
+
+[node name="Camera" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.51, 0.51)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 171.0
+offset_top = 1176.0
+offset_right = 562.0
+offset_bottom = 1249.0
